@@ -4,7 +4,7 @@ namespace Notice;
 
 use Monolog\Logger;
 
-class Notice
+class Notice implements NoticeInterface
 {
     /**
      * @var Logger
