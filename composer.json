@@ -1,4 +1,17 @@
 {
+  "name":"chuxiangqaz/notice",
+  "description": "notice of message",
+  "keywords": [
+    "notice",
+    "monolog"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Chu Xiang",
+      "email": "cxcoding@gmail.com"
+    }
+  ],
   "require": {
     "monolog/monolog": "^1.0||^2.0"
   },
