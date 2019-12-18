@@ -2,14 +2,13 @@ pipeline {
     agent {
         docker {
                 lable 'docker'
-            image 'composer'
+            image 'registry.cn-hangzhou.aliyuncs.com/eryajf/node:11.15'
         }
     }
     stages {
         stage('Build') { 
             steps {
-                sh 'composer install --no-dev' 
-                echo 'composer success'
+                sh 'npm install --registry=https://registry.npm.taobao.org' 
             }
         }
     }
