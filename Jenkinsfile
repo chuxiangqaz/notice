@@ -1,15 +1,42 @@
 pipeline {
-    agent {
-        docker {
-                lable 'docker'
-            image 'registry.cn-hangzhou.aliyuncs.com/eryajf/node:11.15'
-        }
-    }
+    agent any 
+
     stages {
-        stage('Build') { 
+        stage('Build') {
+            parallel{
+                stage('Front End Build: Angular') { 
+                	agent {
+                		docker {
+                			image 'liumiaocn/angular:7.3.8'
+                		}
+                	}
+                    steps { 
+                        sh 'echo Front End Build stage ...' 
+                        sh 'ng --version'
+                    }
+                }
+                stage('Back End Build: Maven') { 
+                	agent {
+                		docker {
+                			image 'liumiaocn/maven:3.6.1'
+                		}
+                	}
+                    steps { 
+                        sh 'echo Back End Build stage ...' 
+                        sh 'mvn --version'
+                    }
+                }
+            }
+        }
+        stage('Test'){
             steps {
-                sh 'npm install --registry=https://registry.npm.taobao.org' 
+                sh 'echo Test stage ...' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo Deploy stage ...' 
             }
         }
     }
-}
+  }
